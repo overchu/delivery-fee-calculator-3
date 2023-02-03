@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './DeliveryForm.css'
 
-const DevlieryForm = (props) => {
+const DeliveryForm = (props) => {
   const [orderTime, setorderTime] = useState('');
   const [paramaters, setParamaters] = useState(
     {cartValue: 0,
@@ -11,7 +11,7 @@ const DevlieryForm = (props) => {
   const [deliveryFee, setDeliveryFee] = useState('');
 
   const timeValueHandler = (event) => {
-    setTime(event.target.value);
+    setorderTime(event.target.value);
   };
 
   const handleChange = (event) => {
@@ -24,8 +24,9 @@ const DevlieryForm = (props) => {
   };
 
   const deliveryPriceChangeHandler = (event) => {
+    const deliveryFee = calculateDeliveryFee
     event.preventDefault();
-    setDeliveryFee;
+    setDeliveryFee(deliveryFee);
   };
 
   function calculateDeliveryFee(cartValue, deliveryDistance, numberOfItems,
@@ -96,3 +97,5 @@ const DevlieryForm = (props) => {
     </form>
   )
 }
+
+export default DeliveryForm;
