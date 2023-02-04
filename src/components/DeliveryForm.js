@@ -100,7 +100,7 @@ const DeliveryForm = (props) => {
             value={date} onChange={dateValueHandler} />
           </div>
         </div>
-        <div className='delivery-calculator__control'>
+        <div className='delivery-calculator__action'>
           <p>Delivery price: {deliveryFee} €</p>
         </div>
       </div>
