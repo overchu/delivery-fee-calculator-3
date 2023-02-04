@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './DeliveryForm.css'
 
 const DeliveryForm = (props) => {
-  const [date, setDate] = useState('1982-03-21');
+  const [date, setDate] = useState(getCurrentTimeString());
   const [paramaters, setParamaters] = useState(
     {cartValue: 0,
      deliveryDistance: 0,
@@ -25,6 +25,16 @@ const DeliveryForm = (props) => {
       })
     );
   };
+
+  function getCurrentTimeString() {
+     let currentTime = new Date();
+     let year = currentTime.getFullYear();
+     let month = currentTime.getMonth().toString().padStart(2, '0');
+     let day = currentTime.getDate().toString().padStart(2, '0');
+     let hour = currentTime.getHours().toString().padStart(2, '0');
+     let minute = currentTime.getMinutes().toString().padStart(2, '0');
+     return `${year}-${month}-${day}T${hour}:${minute}`;
+  }
 
   function calculateDeliveryFee(cartValue, deliveryDistance, numberOfItems,
     orderDateString){
