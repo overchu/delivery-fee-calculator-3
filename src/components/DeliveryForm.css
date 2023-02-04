@@ -11,13 +11,15 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-.delivery-calculator h1 {
-  margin-top: 0px;
+.delivery-calculator__controls {
+  margin-bottom: 1rem;
+  text-align: left;
 }
 
 .delivery-calculator__control {
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: 1fr 1fr;
 }
 
 .delivery-calculator__label {
