@@ -22,11 +22,19 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.delivery-calculator__label {
-  width: 100px;
-  text-align: start;
+.delivery-calculator label {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
-.delivery-calculator__input {
-  margin-right: 12px;
+.delivery-calculator input {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 13rem;
+  max-width: 100%;
+  font-size: 1rem;
 }
