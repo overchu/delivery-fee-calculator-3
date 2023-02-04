@@ -69,22 +69,19 @@ const DeliveryForm = (props) => {
     <form>
       <div className='delivery-calculator'>
         <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Cart Value</label>
+          <label className='delivey-calculator__label'>Cart Value (€)</label>
           <input className='delivery-calculator__input' name="cartValue"
           type="number" value={paramaters.cartValue} onChange={handleChange} />
-          <p>€</p>
         </div>
         <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Delivery distance</label>
+          <label className='delivey-calculator__label'>Delivery distance (m)</label>
           <input className='delivery-calculator__input' name="deliveryDistance"
           type="number" value={paramaters.deliveryDistance} onChange={handleChange} />
-          <p>m</p>
         </div>
         <div className='delivery-calculator__control'>
           <label className='delivey-calculator__label'>Number of items</label>
           <input className='delivery-calculator__input' name="numberOfItems"
           type="number" value={paramaters.numberOfItems} onChange={handleChange} />
-          <p>pcs</p>
         </div>
         <div className='delivery-calculator__control'>
           <label className='delivey-calculator__label'>Time</label>
@@ -93,7 +90,7 @@ const DeliveryForm = (props) => {
           value={date} onChange={dateValueHandler} />
         </div>
         <div className='delivery-calculator__control'>
-          <p>Delivery price: {deliveryFee}</p>
+          <p>Delivery price: {deliveryFee} €</p>
         </div>
       </div>
     </form>
