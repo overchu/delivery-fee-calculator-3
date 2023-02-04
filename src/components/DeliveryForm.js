@@ -68,26 +68,37 @@ const DeliveryForm = (props) => {
   return (
     <form>
       <div className='delivery-calculator'>
-        <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Cart Value (€)</label>
-          <input className='delivery-calculator__input' name="cartValue"
-          type="number" value={paramaters.cartValue} onChange={handleChange} />
+        <div className='delivery-calculator__controls'>
+          <div className='delivery-calculator__control'>
+            <label>Cart Value (€)</label>
+            <input
+            name="cartValue"
+            type="number"
+            value={paramaters.cartValue}
+            onChange={handleChange} />
+          </div>
         </div>
-        <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Delivery distance (m)</label>
-          <input className='delivery-calculator__input' name="deliveryDistance"
-          type="number" value={paramaters.deliveryDistance} onChange={handleChange} />
+        <div className='delivery-calculator__controls'>
+          <div className='delivery-calculator__control'>
+            <label className='delivey-calculator__label'>Delivery distance (m)</label>
+            <input className='delivery-calculator__input' name="deliveryDistance"
+            type="number" value={paramaters.deliveryDistance} onChange={handleChange} />
+          </div>
         </div>
-        <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Number of items</label>
-          <input className='delivery-calculator__input' name="numberOfItems"
-          type="number" value={paramaters.numberOfItems} onChange={handleChange} />
+        <div className='delivery-calculator__controls'>
+          <div className='delivery-calculator__control'>
+            <label className='delivey-calculator__label'>Number of items</label>
+            <input className='delivery-calculator__input' name="numberOfItems"
+            type="number" value={paramaters.numberOfItems} onChange={handleChange} />
+          </div>
         </div>
-        <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Time</label>
-          <input className='delivery-calculator__input' type="datetime-local"
-          min={date}
-          value={date} onChange={dateValueHandler} />
+        <div className='delivery-calculator__controls'>
+          <div className='delivery-calculator__control'>
+            <label className='delivey-calculator__label'>Time</label>
+            <input className='delivery-calculator__input' type="datetime-local"
+            min={date}
+            value={date} onChange={dateValueHandler} />
+          </div>
         </div>
         <div className='delivery-calculator__control'>
           <p>Delivery price: {deliveryFee} €</p>
