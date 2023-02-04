@@ -101,7 +101,12 @@ const DeliveryForm = (props) => {
           </div>
         </div>
         <div className='delivery-calculator__action'>
-          <p>Delivery price: {deliveryFee} €</p>
+          <div>
+          <p>Delivery price:</p>
+          </div>
+          <div>
+            <h3>{deliveryFee} €</h3>
+          </div>
         </div>
       </div>
     </form>

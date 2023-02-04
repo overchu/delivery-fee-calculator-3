@@ -55,3 +55,13 @@
   border-radius: 1.25rem;
   text-shadow: 1px 1px 3px rgb(0 0 0 / 20%);
 }
+
+.delivery-calculator__action p {
+  font-size: 1rem;
+  color: #EEEEEE;
+}
+
+.delivery-calculator__action h3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
