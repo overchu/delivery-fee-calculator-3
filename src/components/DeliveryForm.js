@@ -78,7 +78,7 @@ const DeliveryForm = (props) => {
         </div>
         <div className='delivery-calculator__control'>
           <label className='delivey-calculator__label'>Time</label>
-          <input className='delivery-calculator__input' type="date"
+          <input className='delivery-calculator__input' type="datetime-local"
           value={date} onChange={dateValueHandler} />
         </div>
         <div className='delivery-calculator__control'>
