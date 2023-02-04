@@ -3,39 +3,43 @@ import React, { useState } from 'react';
 import './DeliveryForm.css'
 
 const DeliveryForm = (props) => {
-  const [orderTime, setorderTime] = useState('');
+  const [date, setDate] = useState(getCurrentTimeString());
   const [paramaters, setParamaters] = useState(
     {cartValue: 0,
      deliveryDistance: 0,
      numberOfItems: 0});
-  const [deliveryFee, setDeliveryFee] = useState('');
 
-  const timeValueHandler = (event) => {
-    setorderTime(event.target.value);
-  };
+  const deliveryFee = calculateDeliveryFee(paramaters.cartValue,
+    paramaters.deliveryDistance, paramaters.numberOfItems, date);
+
+  const dateValueHandler = (event) => {
+    setDate(event.target.value);
+  }
 
   const handleChange = (event) => {
     setParamaters(prev => (
       {
         ...prev,
-        [event.target.name]: parseInt(event.target.value, 10)
+        [event.target.name]: parseInt(event.target.value, 10) || 0
+        //handle empty string
       })
     );
   };
 
-  const deliveryPriceChangeHandler = (event) => {
-    const deliveryFee = calculateDeliveryFee
-    event.preventDefault();
-    setDeliveryFee(deliveryFee);
-  };
+  function getCurrentTimeString() {
+     let currentTime = new Date();
+     let year = currentTime.getFullYear();
+     let month = currentTime.getMonth().toString().padStart(2, '0');
+     let day = currentTime.getDate().toString().padStart(2, '0');
+     let hour = currentTime.getHours().toString().padStart(2, '0');
+     let minute = currentTime.getMinutes().toString().padStart(2, '0');
+     return `${year}-${month}-${day}T${hour}:${minute}`;
+  }
 
   function calculateDeliveryFee(cartValue, deliveryDistance, numberOfItems,
-    orderTime){
+    orderDateString){
       let deliveryFee = 0;
-
-      if (!(orderTime instanceof Date)) {
-        orderTime = new Date();
-      }
+     // let orderDate = new Date(orderDateString);
 
       if (cartValue >= 100) {
         return deliveryFee;
@@ -55,43 +59,54 @@ const DeliveryForm = (props) => {
         const bulkFee = Math.min(1.2 * (numberOfItems - 4), 12) * 0.5;
         deliveryFee += bulkFee;
       }
-      const rushHourMultiplier = (orderTime.getUTChours() >= 15 && orderTime.getUTCHOurs() < 19)
-      deliveryFee *= rushHourMultiplier;
+      // const rushHourMultiplier = (orderDate.getUTChours() >= 15 && orderDate.getUTCHOurs() < 19)
+      // deliveryFee *= rushHourMultiplier;
       deliveryFee = Math.min(deliveryFee, 15);
-      setDeliveryFee(deliveryFee);
+      return deliveryFee;
   };
 
   return (
     <form>
       <div className='delivery-calculator'>
-        <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Cart Value</label>
-          <input className='delivery-calculator__input' name="cartValue"
-          type="number" value={paramaters.cartValue} onChange={handleChange} />
-          <p>€</p>
+        <div className='delivery-calculator__controls'>
+          <div className='delivery-calculator__control'>
+            <label>Cart Value (€)</label>
+            <input
+            name="cartValue"
+            type="number"
+            value={paramaters.cartValue}
+            onChange={handleChange} />
+          </div>
         </div>
-        <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Delivery distance</label>
-          <input className='delivery-calculator__input' name="deliveryDistance"
-          type="number" value={paramaters.deliveryDistance} onChange={handleChange} />
-          <p>m</p>
+        <div className='delivery-calculator__controls'>
+          <div className='delivery-calculator__control'>
+            <label className='delivey-calculator__label'>Delivery distance (m)</label>
+            <input className='delivery-calculator__input' name="deliveryDistance"
+            type="number" value={paramaters.deliveryDistance} onChange={handleChange} />
+          </div>
         </div>
-        <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Number of items</label>
-          <input className='delivery-calculator__input' name="numberOfItems"
-          type="number" value={paramaters.numberOfItems} onChange={handleChange} />
-          <p>pcs</p>
+        <div className='delivery-calculator__controls'>
+          <div className='delivery-calculator__control'>
+            <label className='delivey-calculator__label'>Number of items</label>
+            <input className='delivery-calculator__input' name="numberOfItems"
+            type="number" value={paramaters.numberOfItems} onChange={handleChange} />
+          </div>
         </div>
-        <div className='delivery-calculator__control'>
-          <label className='delivey-calculator__label'>Time</label>
-          <input className='delivery-calculator__input' type="date"
-          value={orderTime} onChange={timeValueHandler} />
+        <div className='delivery-calculator__controls'>
+          <div className='delivery-calculator__control'>
+            <label className='delivey-calculator__label'>Time</label>
+            <input className='delivery-calculator__input' type="datetime-local"
+            min={date}
+            value={date} onChange={dateValueHandler} />
+          </div>
         </div>
-        <div className='delivery-calculator__control'>
-          <button onClick={deliveryPriceChangeHandler}>Calculate delivery price</button>
-        </div>
-        <div className='delivery-calculator__control'>
-          <p>Delivery price: {deliveryFee}</p>
+        <div className='delivery-calculator__action'>
+          <div>
+          <p>Delivery price:</p>
+          </div>
+          <div>
+            <h3>{deliveryFee} €</h3>
+          </div>
         </div>
       </div>
     </form>
